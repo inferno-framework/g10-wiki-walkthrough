@@ -32,9 +32,9 @@ Inferno provides a reference set of tests for FHIR R4. You may use this to test 
 
 ## Step 3: Perform Standalone Patient App Tests
 
-Inferno's tests for the ONC certification criteria are organized into four steps.  This allows the tester to walk through the requirements in an order similar to what would be done in a real world situation, while limiting redundant testing.
+Inferno's tests for the ONC certification criteria are organized into six steps.  This allows the tester to walk through the requirements in an order similar to what would be done in a real world situation, while limiting redundant testing.
 
-The first step, 'Standalone Patient App', verifies the ability of a system to perform a Patient Standalone Launch to a SMART on FHIR confidential client with a patient context, refresh token, and OpenID Connect (OIDC) identity token.
+The first step, 'Standalone Patient App', demonstrates the ability of a system to perform a Patient Standalone Launch to a SMART on FHIR confidential client with a patient context, refresh token, and OpenID Connect (OIDC) identity token. After launch, a simple Patient resource read is performed on the patient in context. The access token is then refreshed, and the Patient resource is read using the new access token to ensure that the refresh was successful. The authentication information provided by OpenID Connect is decoded and validated, and simple queries are performed to ensure that access is granted to all USCDI data elements.
 
 ![Inferno First Step](images/inferno_first_step.png)
 
@@ -46,8 +46,13 @@ The first step, 'Standalone Patient App', verifies the ability of a system to pe
 * In the Inferno Modal, provide the Client ID (and Client Secret if it is a Confidential Client) and click 'Execute'.
 * The tests start executing until user input is required. A Tests Running modal will appear to ask if Inferno can redirect to the fhir server's authorization page. Click 'Continue'.
 * From here you should follow the fhir server's authorization process.  For the Inferno reference server:
-    
-* and an overall test result for the entire step will be presented, along with results for each component of the test.  Click on 'details' for more information about any component of the test.
+> * Select a Patient
+> * [PICTURE HERE]
+> * Keep all scopes checked, and click 'Authorize'
+> * [PICTURE HERE]
+> The authorization process should redirect you back to inferno, which will continue executing the tests.
+
+You should be able to view the results of the Standalone Patient App tests here. 
 
 ![Discovery Complete](images/discovery_complete.png)
 
@@ -58,4 +63,71 @@ The first step, 'Standalone Patient App', verifies the ability of a system to pe
 
 * For even more information on any individual test step, click 'results'.
 * You have now completed your first test.
+
+## Step 5: Perform Limited App Tests
+
+After you have finished reviewing the results from the Standalone Patient App tests, click 'Next' or click on the 'Limited App' tab to progress to the next step in the test procedure. This scenario demonstrates the ability to perform a Patient Standalone Launch to a SMART on FHIR confidential client with limited access granted to the app based on user input. The tester is expected to grant the application access to a subset of desired resource types, and to deny requests for “offline_access” refresh tokens. 
+
+* Click on the 'Run Tests' button to begin.
+
+![Standalone Screenshot](images/standalone_screenshot.png)
+
+* Note the resources listed in the Expected Resource Grant
+
+![Standalone Modal](images/standalone_modal.png)
+
+*  Once you click 'Execute', similar to the Standalone Patient App Tests, Inferno will notify you that it is redirecting you to the Authorization server as part of the SMART on FHIR / OAuth launch sequence. Click 'Continue' to redirect to the fhir server's authorization process.
+
+![Standalone Redirect](images/redirect.png)
+
+* From here you should follow the fhir server's authorization process.  For the Inferno reference server:
+> * Select a Patient
+> * [PICTURE HERE]
+> * Deselect all scopes except for 'patient/Condition.read', patient/Observation.read, and 'patient/Patient.read' (resources listed in the Expected Resource Grant in the previous step), and click 'Authorize'
+> * [PICTURE HERE]
+> The authorization process should redirect you back to inferno, which will continue executing the tests.
+
+![Standalone Authorize](images/authorize.png)
+
+## Step 6: Perform EHR Practitioner App Tests
+
+Continue on to the 'EHR Practitioner App' set of tests.  This set of tests requires the user to initiate an app launch *outside of Inferno* in order to fully demonstrate the ability of the server to support the EHR Launch flow as described in the SMART App Launch Guide.  Inferno tests this by pausing this set of tests mid-execution, and waits at the specified launch point for the user to initiate the launch sequence from the EHR.  This action will then inform Inferno that the test may continue running, with information provided during the launch.
+
+![EHR Prerun](images/inferno_ehr_prerun.png)
+
+* Click Run Tests, and provide Client ID (and Client Secret if Confidential)
+* Click 'Execute' to begin the tests
+* The tests will begin executing and immediately the interface will notify the user that Inferno needs to receive an external action in order to continue. In this case, Inferno is waiting for the user to initiate and app launch from the EHR
+
+![EHR Waiting](images/waiting.png)
+
+* Launch the app from your EHR from the provided app.  For the Inferno reference server:
+> * Go to https://inferno.healthit.gov/reference-server/app/app-launch
+> * Enter in the provided launch uri (https://inferno.healthit.gov/inferno/oauth2/static/launch)
+> * Click Launch App
+
+![EHR Launch](images/hspc_launch.png)
+
+* From this point on, the tests will execute in a similar manner to the Standalone Launch sequence provided earlier.
+
+* And finally, results will be displayed in a similar manner to the previous test groups.
+
+## Step 7: Perform Single Patient Api Tests
+
+At this point, the user should have received a Patient ID and be authorized to perform the required FHIR queries on the FHIR server.  Click 'Next' or on the 'Single Patient Api' tab to begin testing that capability.
+
+![Data Access](images/inferno_data_access.png)
+
+* Before starting, the user will be shown the Bearer Token collected earlier, as well as the Patient ID returned *on the most recent SMART Launch*.  This may have been either the Standalone Launch or Patient launch -- this set of tests currently does not require users to demonstrate all of these queries in both situations.
+
+![Data Access Modal](images/data_access_modal.png)
+
+* After running these tests, you will be presented with the test results.  These tests typically follow this pattern:
+  * Ensure that the user does not have access to searching without the appropriate authorization header
+  * Perform a FHIR search for all resources of a certain type that are associated with the relevant patient
+  * For each of the filtered searches required by US Core / Argonaut, generate search queries that should return at least one result based on data that has already been seen, and verify that all data returned falls within the search criteria.
+  * Validate all resources returned against the relevant profile.  This includes validating that codes are within required ValueSets
+  * Ensure that all references contained within the resource can be retrieved
+* Note: if the selected patient does not include all required resources, then some tests will be marked as 'SKIP'.  The tester can then execute one of the Launch Sequence tests and authorize another patient, and only execute the tests that were previously skipped.  This allows the test system to have the flexibility to demonstrate that all data can be returned, without requiring a single patient to have all required data elements
+
 
