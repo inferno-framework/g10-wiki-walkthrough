@@ -130,4 +130,31 @@ At this point, the user should have received a Patient ID and be authorized to p
   * Ensure that all references contained within the resource can be retrieved
 * Note: if the selected patient does not include all required resources, then some tests will be marked as 'SKIP'.  The tester can then execute one of the Launch Sequence tests and authorize another patient, and only execute the tests that were previously skipped.  This allows the test system to have the flexibility to demonstrate that all data can be returned, without requiring a single patient to have all required data elements
 
+## Step 8: Perform Multi-Patient Api Tests
+
+The Multi-Patient Authorization and Api tests demonstrate the ability to export clinical data for multiple patients in a group using FHIR Bulk Data Access IG. This test uses Backend Services Authorization to obtain an access token from the server. After authorization, a group level bulk data export request is initialized. Finally, this test reads exported NDJSON files from the server and validates the resources in each file. To run the test successfully, the selected group export is required to have every type of resource mapped to USCDI data elements. Additionally, it is expected the server will provide Encounter, Location, Organization, and Practitioner resources as they are referenced as must support elements in required resources. 
+
+* Click 'Run Tests'. The Multi-Patient Authorization and API Modal will appear
+> * Fill Bulk Data FHIR URL, Backend Services Token Endpoint, Bulk Data Client ID, Bulk Data Scopes, and Group ID
+> * Click 'Execute'
+
+## Step 9: Perform Additional Tests
+
+Not all requirements that need to be tested fit within the previous scenarios. The tests contained in this section addresses remaining testing requirements. Each of these tests need to be run independently. Please read the instructions for each in the ‘About’ section, as they may require special setup on the part of the tester.
+
+In this test, each section is run separately.
+
+* Public Client Standalone Launch With OpenId Connect
+Register Inferno as a public client with patient access and execute standalone launch.
+> * Click 'Run'
+> * Fill out the Public Client Standalone Launch with OpenID Connect Modal
+> * Click 'Execute'
+> * Follow the Redirect Authorization process similar to the Standalone Patient App Tests
+
+* Token Revocation
+This test demonstrates the Health IT module is capable of revoking access granted to an application. This test relies on the user to verify that token was revoked.
+> * Revoke a Token through the EHR.  For the Inferno Reference Server, you can do this by taking the token id from 
+
+
+
 
