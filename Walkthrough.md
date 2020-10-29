@@ -153,7 +153,22 @@ Register Inferno as a public client with patient access and execute standalone l
 
 * Token Revocation
 This test demonstrates the Health IT module is capable of revoking access granted to an application. This test relies on the user to verify that token was revoked.
-> * Revoke a Token through the EHR.  For the Inferno Reference Server, you can do this by taking the token id from 
+> * Revoke a Token through the EHR.  For the Inferno Reference Server:
+> > * take the Token and Refresh Token values from the previous Public Client Standalone Launch With OpenID Connect Outputs (or from other previous tests that generate a Token and Refresh Token)
+
+screenshot
+
+> > * Go to https://inferno.healthit.gov/reference-server/oauth/token/revoke-token and insert the copied Token value into the text input and click 'Revoke'
+
+screenshot
+
+> Once you have done this, click 'Run' and fill out the Token Revocation modal with the correct FHIR Endpoint, OAuth 2.0 Token Endpoint, and the Revoked Bearer Token and Corresponding Refresh Token
+screenshot
+> Click 'Execute'
+
+
+
+
 
 
 
