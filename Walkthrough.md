@@ -168,14 +168,50 @@ screenshot
 
 * SMART App Launch Error: Invalid Launch Parameter
 The purpose of this test is to demonstrate that the server properly validates AUD parameter
-> Fill out the OAuth 2.0 Authorize Endpoint, OAuth 2.0 Token Endpoint, and Client ID fields
+> Click 'Run'
+> Fill out the SMART App Launch Error: Invalid AUD Parameter modal
+[screenshot]
 > Click 'Execute'
 
 The Test Running modal will appear.
 
 image
 
-> Click 'Perform Invalid Launch in New Window' which should redirect you to the fhir server's authorization process.  The purpose of this test is to confirm that the fhir server does NOT return back to Inferno, but instead displays an error message indicating that the aud value 'https://
+> Click 'Perform Invalid Launch in New Window' which should open a new tab that redirects you to the fhir server's authorization process.  The purpose of this test is to confirm that the fhir server does NOT return back to Inferno, but instead displays an error message indicating that the aud value is invalid. 
+
+For example, with the Inferno reference server:
+
+[SCREENSHOT HERE]
+
+> As soon as you have confirmed that the redirect displays an error, go back to your Inferno tab click 'Attest Launch Failed'
+
+* SMART App Launch Error: Invalid Launch Parameter
+The purpose of this test is to demonstrate that the server properly validates LAUNCH parameter
+> Click 'Run'
+> Fill out the SMART App Launch Error: Invalid Launch Parameter modal
+[SCREENSHOT]
+> Click 'Execute'
+
+>The Waiting at LAUNCH URI modal will appear. Launch from your EHR with the provided LAUNCH URI.
+
+[screenshot]
+
+> Launch the app from your EHR from the provided app.  For the Inferno reference server:
+> * Go to https://inferno.healthit.gov/reference-server/app/app-launch
+> * Enter in the provided launch uri (https://inferno.healthit.gov/inferno/oauth2/static/launch)
+> * Click 'Launch App'. 
+> Launching from the EHR should redirect you to Inferno with the 'Tests Running' modal open
+> Click 'Perform Invalid Launch in New Window'. This should open a new tab in your EHR where you should receive an error message stating that the Launch is invalid
+> Go back to your Inferno tab, and click 'Attest Launch Failed' 
+
+* Visual Inspection And Attestation
+The purpose of this test is to verify conformance to portions of the test procedure that are not automated.
+> Click 'Run'
+> The 'Visual Inspection and Attestation modal will appear, with a list of Yes/No radio buttons and text boxes for Notes.  Fill out this form, and click 'Execute'
+
+[screenshot] 
+
+
 
 
 
