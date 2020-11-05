@@ -166,8 +166,16 @@ screenshot
 screenshot
 > Click 'Execute'
 
+* SMART App Launch Error: Invalid Launch Parameter
+The purpose of this test is to demonstrate that the server properly validates AUD parameter
+> Fill out the OAuth 2.0 Authorize Endpoint, OAuth 2.0 Token Endpoint, and Client ID fields
+> Click 'Execute'
 
+The Test Running modal will appear.
 
+image
+
+> Click 'Perform Invalid Launch in New Window' which should redirect you to the fhir server's authorization process.  The purpose of this test is to confirm that the fhir server does NOT return back to Inferno, but instead displays an error message indicating that the aud value 'https://
 
 
 
