@@ -6,13 +6,13 @@ At the end of this walkthrough, you will be able to use Inferno's draft ONC Prog
 
 Please note that Inferno is undergoing active development.  Updates to Inferno can be followed on the [Inferno Release Page](https://github.com/onc-healthit/inferno-program/releases).
 
-* [Step 2: Open Inferno](#step-2-open-inferno)
-* [Step 3: Select FHIR Version and Enter FHIR Endpoint](#step-3-select-fhir-version-and-enter-fhir-endpoint)
-* [Step 4: Perform Discovery and Registration Tests](#step-4-perform-discovery-and-registration-tests)
-* [Step 5: Perform Standalone Patient App Tests](#step-5-perform-standalone-patient-app-tests)
-* [Step 6: Perform EHR Launch App Tests](#step-6-perform-ehr-launch-app-tests)
-* [Step 7: Perform Data Access Tests](#step-7-perform-data-access-tests)
-* [Step 8: Review Results](#step-8-review-results)
+* [Step 1: Open Inferno](#step-1-open-inferno)
+* [Step 2: Select FHIR Version and Enter FHIR Endpoint](#step-2-select-fhir-version-and-enter-fhir-endpoint)
+* [Step 3: Perform Standalone Patient App Tests](#step-3-perform-standalone-patient-app-tests)
+* [Step 4: Perform Limited App Tests](#step-4-perform-limited-app-tests)
+* [Step 5: Perform EHR Launch App Tests](#step-5-perform-ehr-launch-app-tests)
+* [Step 6: Perform Single Patient Api Tests](#step-6-perform-single-patient-api-tests)
+* [Step 7: Perform Multi-Patient Api Tests](#step-7-review-results)
 
 ## Step 1: Open Inferno
 
@@ -64,7 +64,7 @@ You should be able to view the results of the Standalone Patient App tests here.
 * For even more information on any individual test step, click 'results'.
 * You have now completed your first test.
 
-## Step 5: Perform Limited App Tests
+## Step 4: Perform Limited App Tests
 
 After you have finished reviewing the results from the Standalone Patient App tests, click 'Next' or click on the 'Limited App' tab to progress to the next step in the test procedure. This scenario demonstrates the ability to perform a Patient Standalone Launch to a SMART on FHIR confidential client with limited access granted to the app based on user input. The tester is expected to grant the application access to a subset of desired resource types, and to deny requests for “offline_access” refresh tokens. 
 
@@ -89,7 +89,7 @@ After you have finished reviewing the results from the Standalone Patient App te
 
 ![Standalone Authorize](images/authorize.png)
 
-## Step 6: Perform EHR Practitioner App Tests
+## Step 5: Perform EHR Practitioner App Tests
 
 Continue on to the 'EHR Practitioner App' set of tests.  This set of tests requires the user to initiate an app launch *outside of Inferno* in order to fully demonstrate the ability of the server to support the EHR Launch flow as described in the SMART App Launch Guide.  Inferno tests this by pausing this set of tests mid-execution, and waits at the specified launch point for the user to initiate the launch sequence from the EHR.  This action will then inform Inferno that the test may continue running, with information provided during the launch.
 
@@ -112,7 +112,7 @@ Continue on to the 'EHR Practitioner App' set of tests.  This set of tests requi
 
 * And finally, results will be displayed in a similar manner to the previous test groups.
 
-## Step 7: Perform Single Patient Api Tests
+## Step 6: Perform Single Patient Api Tests
 
 At this point, the user should have received a Patient ID and be authorized to perform the required FHIR queries on the FHIR server.  Click 'Next' or on the 'Single Patient Api' tab to begin testing that capability.
 
@@ -130,7 +130,7 @@ At this point, the user should have received a Patient ID and be authorized to p
   * Ensure that all references contained within the resource can be retrieved
 * Note: if the selected patient does not include all required resources, then some tests will be marked as 'SKIP'.  The tester can then execute one of the Launch Sequence tests and authorize another patient, and only execute the tests that were previously skipped.  This allows the test system to have the flexibility to demonstrate that all data can be returned, without requiring a single patient to have all required data elements
 
-## Step 8: Perform Multi-Patient Api Tests
+## Step 7: Perform Multi-Patient Api Tests
 
 The Multi-Patient Authorization and Api tests demonstrate the ability to export clinical data for multiple patients in a group using FHIR Bulk Data Access IG. This test uses Backend Services Authorization to obtain an access token from the server. After authorization, a group level bulk data export request is initialized. Finally, this test reads exported NDJSON files from the server and validates the resources in each file. To run the test successfully, the selected group export is required to have every type of resource mapped to USCDI data elements. Additionally, it is expected the server will provide Encounter, Location, Organization, and Practitioner resources as they are referenced as must support elements in required resources. 
 
@@ -138,7 +138,7 @@ The Multi-Patient Authorization and Api tests demonstrate the ability to export 
 > * Fill Bulk Data FHIR URL, Backend Services Token Endpoint, Bulk Data Client ID, Bulk Data Scopes, and Group ID
 > * Click 'Execute'
 
-## Step 9: Perform Additional Tests
+## Step 8: Perform Additional Tests
 
 Not all requirements that need to be tested fit within the previous scenarios. The tests contained in this section addresses remaining testing requirements. Each of these tests need to be run independently. Please read the instructions for each in the ‘About’ section, as they may require special setup on the part of the tester.
 
