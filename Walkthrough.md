@@ -7,7 +7,7 @@ At the end of this walkthrough, you will be able to use Inferno's draft ONC Prog
 Please note that Inferno is undergoing active development.  Updates to Inferno can be followed on the [Inferno Release Page](https://github.com/onc-healthit/inferno-program/releases).
 
 * [Step 1: Open Inferno](#step-1-open-inferno)
-* [Step 2: Select FHIR Version and Enter FHIR Endpoint](#step-2-select-fhir-version-and-enter-fhir-endpoint)
+* [Step 2: Enter FHIR Endpoint](#step-2-enter-fhir-endpoint)
 * [Step 3: Perform Standalone Patient App Tests](#step-3-perform-standalone-patient-app-tests)
 * [Step 4: Perform Limited App Tests](#step-4-perform-limited-app-tests)
 * [Step 5: Perform EHR Practitioner App Tests](#step-5-perform-ehr-practitioner-app-tests)
@@ -22,7 +22,7 @@ Please note that Inferno is undergoing active development.  Updates to Inferno c
 
 ![Inferno Splash](images/inferno_landing.png)
 
-## Step 2: Select FHIR Version and Enter FHIR Endpoint
+## Step 2: Enter FHIR Endpoint
 
 Inferno provides a reference set of tests for FHIR R4. You may use this to test your own fhir end point, or test against the preset Inferno Reference Server.   
 
