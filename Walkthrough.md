@@ -13,6 +13,7 @@ Please note that Inferno is undergoing active development.  Updates to Inferno c
 * [Step 5: Perform EHR Practitioner App Tests](#step-5-perform-ehr-practitioner-app-tests)
 * [Step 6: Perform Single Patient Api Tests](#step-6-perform-single-patient-api-tests)
 * [Step 7: Perform Multi-Patient Api Tests](#step-7-perform-multi-patient-api-tests)
+* [Step 8: Perform Additional Tests](#step-7-perform-additional-tests) 
 
 ## Step 1: Open Inferno
 
