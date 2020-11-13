@@ -10,9 +10,9 @@ Please note that Inferno is undergoing active development.  Updates to Inferno c
 * [Step 2: Select FHIR Version and Enter FHIR Endpoint](#step-2-select-fhir-version-and-enter-fhir-endpoint)
 * [Step 3: Perform Standalone Patient App Tests](#step-3-perform-standalone-patient-app-tests)
 * [Step 4: Perform Limited App Tests](#step-4-perform-limited-app-tests)
-* [Step 5: Perform EHR Launch App Tests](#step-5-perform-ehr-launch-app-tests)
+* [Step 5: Perform EHR Practitioner App Tests](#step-5-perform-ehr-practitioner-app-tests)
 * [Step 6: Perform Single Patient Api Tests](#step-6-perform-single-patient-api-tests)
-* [Step 7: Perform Multi-Patient Api Tests](#step-7-review-results)
+* [Step 7: Perform Multi-Patient Api Tests](#step-7-perform-multi-patient-api-tests)
 
 ## Step 1: Open Inferno
 
