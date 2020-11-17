@@ -22,6 +22,8 @@ Please note that Inferno is undergoing active development.  Updates to Inferno c
 
 ![Inferno Splash](images/inferno_landing.png)
 
+
+
 ## Step 2: Enter FHIR Endpoint
 
 Inferno provides a reference set of tests for FHIR R4. You may use this to test your own fhir end point, or test against the preset Inferno Reference Server.   
