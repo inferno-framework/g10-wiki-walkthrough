@@ -20,9 +20,7 @@ Please note that Inferno is undergoing active development.  Updates to Inferno c
 * Go to http://inferno.healthit.gov
 * Select 'Try It Here' ONC Program Edition', which is an instance of Inferno configured to specifically test the requirements of the criteria in the ONC proposed rule.
 
-![Inferno Splash](images/inferno_landing.png)
-
-
+![Inferno Landing](images/inferno-landing.png)
 
 ## Step 2: Enter FHIR Endpoint
 
@@ -31,7 +29,7 @@ Inferno provides a reference set of tests for FHIR R4. You may use this to test 
 * Enter the FHIR URI you would like to test or select the "Or test Inferno against a public sandbox" dropdown and switch it to `Inferno Reference Server`
 * Click 'Start Testing'
 
-![Inferno Version Choice](images/inferno_version_choice.png)
+![Inferno Endpoint Choice](images/inferno-endpoint-choice.png)
 
 ## Step 3: Perform Standalone Patient App Tests
 
@@ -39,30 +37,38 @@ Inferno's tests for the ONC certification criteria are organized into six steps.
 
 The first step, 'Standalone Patient App', demonstrates the ability of a system to perform a Patient Standalone Launch to a SMART on FHIR confidential client with a patient context, refresh token, and OpenID Connect (OIDC) identity token. After launch, a simple Patient resource read is performed on the patient in context. The access token is then refreshed, and the Patient resource is read using the new access token to ensure that the refresh was successful. The authentication information provided by OpenID Connect is decoded and validated, and simple queries are performed to ensure that access is granted to all USCDI data elements.
 
-![Inferno First Step](images/inferno_first_step.png)
+![Standalone Patient App Tests](images/standalone-patient-app.png)
 
 * Click 'Run Tests.'  You will presented with a modal that provides necessary registration information for Inferno. If you opted to test Inferno against a the Inferno reference server, these modal fields will be filled out with the Inferno reference server information.
 
-![Inferno Standalone Patient App - Full Patient Access Modal](images/discover_modal.png)
+![Inferno Standalone Patient App - Full Patient Access Modal](images/standalone-patient-app-full-patient-access-modal.png)
 
 * Register Inferno as a standalone application for your fhir server.
 * In the Inferno Modal, provide the Client ID (and Client Secret if it is a Confidential Client) and click 'Execute'.
 * The tests start executing until user input is required. A Tests Running modal will appear to ask if Inferno can redirect to the fhir server's authorization page. Click 'Continue'.
+
+![Tests Running Modal](images/tests-running-redirect-modal.png)
+
 * From here you should follow the fhir server's authorization process.  For the Inferno reference server:
 > * Select a Patient
-> * [PICTURE HERE]
+
+![Patient Select](images/inferno-reference-server-patient-select.png)
+
 > * Keep all scopes checked, and click 'Authorize'
-> * [PICTURE HERE]
+
+![Scopes Select](images/inferno-reference-server-scopes-select.png)
+
+
 > The authorization process should redirect you back to inferno, which will continue executing the tests.
 
 You should be able to view the results of the Standalone Patient App tests here. 
 
-![Discovery Complete](images/discovery_complete.png)
+![Standalone Patient App Results](images/standalone-patient-app-results.png)
 
 * Inferno provides in-depth information about what occurred during the course of the test to help debug any possible errors.  This includes pass/fail status on any given test, a list of errors, HTTP requests made during the course of the test, and a detailed test description.
 * Click 'Show Details' to provide specifics of the test.
 
-![Discovery Complete](images/result_details.png)
+![Show Details](images/smart-on-fhir-discovery-view-details.png)
 
 * For even more information on any individual test step, click 'results'.
 * You have now completed your first test.
@@ -73,58 +79,73 @@ After you have finished reviewing the results from the Standalone Patient App te
 
 * Click on the 'Run Tests' button to begin.
 
-![Standalone Screenshot](images/standalone_screenshot.png)
+![Limited App](images/limited-app.png)
 
 * Note the resources listed in the Expected Resource Grant
 
-![Standalone Modal](images/standalone_modal.png)
+![Limited App Modal](images/limited-app-modal.png)
 
 *  Once you click 'Execute', similar to the Standalone Patient App Tests, Inferno will notify you that it is redirecting you to the Authorization server as part of the SMART on FHIR / OAuth launch sequence. Click 'Continue' to redirect to the fhir server's authorization process.
 
-![Standalone Redirect](images/redirect.png)
+![Limited App Redirect](images/limited-app-redirect.png)
 
 * From here you should follow the fhir server's authorization process.  For the Inferno reference server:
 > * Select a Patient
-> * [PICTURE HERE]
+
+![Patient Select](images/inferno-reference-server-patient-select.png)
+
 > * Deselect all scopes except for 'patient/Condition.read', patient/Observation.read, and 'patient/Patient.read' (resources listed in the Expected Resource Grant in the previous step), and click 'Authorize'
-> * [PICTURE HERE]
+
+![Limited App Scope Select](images/limited-app-scope-select.png)
+
 > The authorization process should redirect you back to inferno, which will continue executing the tests.
 
-![Standalone Authorize](images/authorize.png)
+![Limited App Results](images/limited-app-results.png)
 
 ## Step 5: Perform EHR Practitioner App Tests
 
 Continue on to the 'EHR Practitioner App' set of tests.  This set of tests requires the user to initiate an app launch *outside of Inferno* in order to fully demonstrate the ability of the server to support the EHR Launch flow as described in the SMART App Launch Guide.  Inferno tests this by pausing this set of tests mid-execution, and waits at the specified launch point for the user to initiate the launch sequence from the EHR.  This action will then inform Inferno that the test may continue running, with information provided during the launch.
 
-![EHR Prerun](images/inferno_ehr_prerun.png)
 
 * Click Run Tests, and provide Client ID (and Client Secret if Confidential)
+
+![EHR Practitioner App](images/ehr-practitioner-app.png)
+
 * Click 'Execute' to begin the tests
+
+![EHR Practitioner App Modal](images/ehr-practitioner-app-modal.png)
+
 * The tests will begin executing and immediately the interface will notify the user that Inferno needs to receive an external action in order to continue. In this case, Inferno is waiting for the user to initiate and app launch from the EHR
 
-![EHR Waiting](images/waiting.png)
+![EHR Waiting](images/ehr-practitioner-app-waiting.png)
 
 * Launch the app from your EHR from the provided app.  For the Inferno reference server:
 > * Go to https://inferno.healthit.gov/reference-server/app/app-launch
 > * Enter in the provided launch uri (https://inferno.healthit.gov/inferno/oauth2/static/launch)
 > * Click Launch App
 
-![EHR Launch](images/hspc_launch.png)
+![EHR Launch](images/inferno-reference-server-app-launch.png)
 
 * From this point on, the tests will execute in a similar manner to the Standalone Launch sequence provided earlier.
 
 * And finally, results will be displayed in a similar manner to the previous test groups.
 
+![EHR Practitioner App Results](images/ehr-practitioner-app-results.png)
+
+
 ## Step 6: Perform Single Patient Api Tests
 
 At this point, the user should have received a Patient ID and be authorized to perform the required FHIR queries on the FHIR server.  Click 'Next' or on the 'Single Patient Api' tab to begin testing that capability.
 
-![Data Access](images/inferno_data_access.png)
+![Single Patient Api](images/single-patient-api.png)
 
-* Before starting, the user will be shown the Bearer Token collected earlier, as well as the Patient ID returned *on the most recent SMART Launch*.  This may have been either the Standalone Launch or Patient launch -- this set of tests currently does not require users to demonstrate all of these queries in both situations.
+* Click 'Run Tests'
 
-![Data Access Modal](images/data_access_modal.png)
+* The user will be shown the Bearer Token collected earlier, as well as the Patient ID returned *on the most recent SMART Launch*.  This may have been either the Standalone Launch or Patient launch -- this set of tests currently does not require users to demonstrate all of these queries in both situations.
 
+![Single Patient Api Modal](images/single-patient-api-modal.png)
+
+* Click 'Execute'
 * After running these tests, you will be presented with the test results.  These tests typically follow this pattern:
   * Ensure that the user does not have access to searching without the appropriate authorization header
   * Perform a FHIR search for all resources of a certain type that are associated with the relevant patient
@@ -137,7 +158,12 @@ At this point, the user should have received a Patient ID and be authorized to p
 
 The Multi-Patient Authorization and Api tests demonstrate the ability to export clinical data for multiple patients in a group using FHIR Bulk Data Access IG. This test uses Backend Services Authorization to obtain an access token from the server. After authorization, a group level bulk data export request is initialized. Finally, this test reads exported NDJSON files from the server and validates the resources in each file. To run the test successfully, the selected group export is required to have every type of resource mapped to USCDI data elements. Additionally, it is expected the server will provide Encounter, Location, Organization, and Practitioner resources as they are referenced as must support elements in required resources. 
 
+![Multi Patient Api](images/multi-patient-api.png)
+
 * Click 'Run Tests'. The Multi-Patient Authorization and API Modal will appear
+
+![Multi Patient Api Modal](images/multi-patient-api-modal.png)
+
 > * Fill Bulk Data FHIR URL, Backend Services Token Endpoint, Bulk Data Client ID, Bulk Data Scopes, and Group ID
 > * Click 'Execute'
 
@@ -156,35 +182,43 @@ Register Inferno as a public client with patient access and execute standalone l
 
 * Token Revocation
 This test demonstrates the Health IT module is capable of revoking access granted to an application. This test relies on the user to verify that token was revoked.
+
+
+
+Click on 'Run Tests'
+
 > * Revoke a Token through the EHR.  For the Inferno Reference Server:
-> > * take the Token and Refresh Token values from the previous Public Client Standalone Launch With OpenID Connect Outputs (or from other previous tests that generate a Token and Refresh Token)
 
-screenshot
-
-> > * Go to https://inferno.healthit.gov/reference-server/oauth/token/revoke-token and insert the copied Token value into the text input and click 'Revoke'
-
-screenshot
-
-> Once you have done this, click 'Run' and fill out the Token Revocation modal with the correct FHIR Endpoint, OAuth 2.0 Token Endpoint, and the Revoked Bearer Token and Corresponding Refresh Token
+> Click 'Run' and fill out the Token Revocation modal with the correct FHIR Endpoint, OAuth 2.0 Token Endpoint, and the Revoked Bearer Token and Corresponding Refresh Token
 screenshot
 > Click 'Execute'
 
-* SMART App Launch Error: Invalid Launch Parameter
+![Multi Patient Api Modal](images/token-revocation-modal.png)
+
+> > * Go to https://inferno.healthit.gov/reference-server/oauth/token/revoke-token in another tab and insert the copied Token value from the modal into the text input and click 'Revoke'. This will also revoke the corresponding refresh token.
+
+![Inferno Reference Server Revoke Token](images/inferno-reference-server-revoke-token.png)
+
+
+
+* SMART App Launch Error: Invalid Aud Parameter
 The purpose of this test is to demonstrate that the server properly validates AUD parameter
 > Click 'Run'
 > Fill out the SMART App Launch Error: Invalid AUD Parameter modal
-[screenshot]
+
+![Smart App Launch Error Invalid Aud Tests Running Modal](images/smart-app-authorization-error-invalid-aud-parameter-modal.png)
+
 > Click 'Execute'
 
 The Test Running modal will appear.
 
-image
+![Smart App Launch Error Invalid Aud Tests Running Modal](images/smart-app-launch-error-invalid-aud-tests-running-modal.png)
 
 > Click 'Perform Invalid Launch in New Window' which should open a new tab that redirects you to the fhir server's authorization process.  The purpose of this test is to confirm that the fhir server does NOT return back to Inferno, but instead displays an error message indicating that the aud value is invalid. 
 
 For example, with the Inferno reference server:
 
-[SCREENSHOT HERE]
+![Smart App Launch Error Invalid Aud Tests Running Modal](images/inferno-reference-server-invalid-aud.png)
 
 > As soon as you have confirmed that the redirect displays an error, go back to your Inferno tab click 'Attest Launch Failed'
 
@@ -192,19 +226,25 @@ For example, with the Inferno reference server:
 The purpose of this test is to demonstrate that the server properly validates LAUNCH parameter
 > Click 'Run'
 > Fill out the SMART App Launch Error: Invalid Launch Parameter modal
-[SCREENSHOT]
+
+![Smart App Launch Parameters Invalid Launch Tests Running Modal](images/smart-app-launch-parameters-invalid-launch-param-modal.png)
+
 > Click 'Execute'
 
->The Waiting at LAUNCH URI modal will appear. Launch from your EHR with the provided LAUNCH URI.
-
-[screenshot]
+>The Waiting at LAUNCH URI modal will appear. Launch from your EHR with the provided LAUNCH URI. Similar to the EHR Practitioner App Tests.
 
 > Launch the app from your EHR from the provided app.  For the Inferno reference server:
 > * Go to https://inferno.healthit.gov/reference-server/app/app-launch
 > * Enter in the provided launch uri (https://inferno.healthit.gov/inferno/oauth2/static/launch)
 > * Click 'Launch App'. 
 > Launching from the EHR should redirect you to Inferno with the 'Tests Running' modal open
-> Click 'Perform Invalid Launch in New Window'. This should open a new tab in your EHR where you should receive an error message stating that the Launch is invalid
+
+![Smart App Launch Parameters Invalid Launch Tests Running Modal](images/smart-app-launch-error-invalid-aud-tests-running-modal.png)
+
+> Click 'Perform Invalid Launch in New Window'. This should open a new tab in your EHR where you should receive an error message stating that the Launch is invalid. For example, with the Inferno Reference Server:
+
+![Inferno Reference Server Launch Is Invalid](images/inferno-reference-server-launch-is-invalid.png)
+
 > Go back to your Inferno tab, and click 'Attest Launch Failed' 
 
 * Visual Inspection And Attestation
@@ -212,7 +252,7 @@ The purpose of this test is to verify conformance to portions of the test proced
 > Click 'Run'
 > The 'Visual Inspection and Attestation modal will appear, with a list of Yes/No radio buttons and text boxes for Notes.  Fill out this form, and click 'Execute'
 
-[screenshot] 
+![Visual Inspection and Attestation Modal](images/visual-inspection-and-attestation-modal.png)
 
 
 
