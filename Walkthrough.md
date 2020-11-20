@@ -49,17 +49,19 @@ The first step, 'Standalone Patient App', demonstrates the ability of a system t
 
 ![Tests Running Modal](images/tests-running-redirect-modal.png)
 
-* From here you should follow the fhir server's authorization process.  For the Inferno reference server:
-> * Select a Patient
+* From here you should follow the fhir server's authorization process.  
+
+For the Inferno reference server:
+ * Select a Patient
 
 ![Patient Select](images/inferno-reference-server-patient-select.png)
 
-> * Keep all scopes checked, and click 'Authorize'
+* Keep all scopes checked, and click 'Authorize'
 
 ![Scopes Select](images/inferno-reference-server-scopes-select.png)
 
 
-> The authorization process should redirect you back to inferno, which will continue executing the tests.
+The authorization process should redirect you back to inferno, which will continue executing the tests.
 
 You should be able to view the results of the Standalone Patient App tests here. 
 
@@ -89,16 +91,19 @@ After you have finished reviewing the results from the Standalone Patient App te
 
 ![Limited App Redirect](images/limited-app-redirect.png)
 
-* From here you should follow the fhir server's authorization process.  For the Inferno reference server:
-> * Select a Patient
+* From here you should follow the fhir server's authorization process.  
+
+For the Inferno reference server:
+
+* Select a Patient
 
 ![Patient Select](images/inferno-reference-server-patient-select.png)
 
-> * Deselect all scopes except for 'patient/Condition.read', patient/Observation.read, and 'patient/Patient.read' (resources listed in the Expected Resource Grant in the previous step), and click 'Authorize'
+* Deselect all scopes except for 'patient/Condition.read', patient/Observation.read, and 'patient/Patient.read' (resources listed in the Expected Resource Grant in the previous step), and click 'Authorize'
 
 ![Limited App Scope Select](images/limited-app-scopes-select.png)
 
-> The authorization process should redirect you back to inferno, which will continue executing the tests.
+The authorization process should redirect you back to inferno, which will continue executing the tests.
 
 ![Limited App Results](images/limited-app-results.png)
 
@@ -119,10 +124,12 @@ Continue on to the 'EHR Practitioner App' set of tests.  This set of tests requi
 
 ![EHR Waiting](images/ehr-practitioner-app-waiting.png)
 
-* Launch the app from your EHR from the provided app.  For the Inferno reference server:
-> * Go to https://inferno.healthit.gov/reference-server/app/app-launch
-> * Enter in the provided launch uri (https://inferno.healthit.gov/inferno/oauth2/static/launch)
-> * Click Launch App
+* Launch the app from your EHR from the provided app.  
+
+For the Inferno reference server:
+* Go to https://inferno.healthit.gov/reference-server/app/app-launch
+* Enter in the provided launch uri (https://inferno.healthit.gov/inferno/oauth2/static/launch)
+* Click Launch App
 
 ![EHR Launch](images/inferno-reference-server-app-launch.png)
 
@@ -164,8 +171,8 @@ The Multi-Patient Authorization and Api tests demonstrate the ability to export 
 
 ![Multi Patient Api Modal](images/multi-patient-api-modal.png)
 
-> * Fill Bulk Data FHIR URL, Backend Services Token Endpoint, Bulk Data Client ID, Bulk Data Scopes, and Group ID
-> * Click 'Execute'
+ * Fill Bulk Data FHIR URL, Backend Services Token Endpoint, Bulk Data Client ID, Bulk Data Scopes, and Group ID
+ * Click 'Execute'
 
 ## Step 8: Perform Additional Tests
 
@@ -175,10 +182,10 @@ In this test, each section is run separately.
 
 * Public Client Standalone Launch With OpenId Connect
 Register Inferno as a public client with patient access and execute standalone launch.
-> * Click 'Run'
-> * Fill out the Public Client Standalone Launch with OpenID Connect Modal
-> * Click 'Execute'
-> * Follow the Redirect Authorization process similar to the Standalone Patient App Tests
+ * Click 'Run'
+ * Fill out the Public Client Standalone Launch with OpenID Connect Modal
+ * Click 'Execute'
+ * Follow the Redirect Authorization process similar to the Standalone Patient App Tests
 
 * Token Revocation
 This test demonstrates the Health IT module is capable of revoking access granted to an application. This test relies on the user to verify that token was revoked.
@@ -187,15 +194,15 @@ This test demonstrates the Health IT module is capable of revoking access grante
 
 Click on 'Run Tests'
 
-> * Revoke a Token through the EHR.  For the Inferno Reference Server:
+ * Revoke a Token through the EHR.  For the Inferno Reference Server:
 
-> Click 'Run' and fill out the Token Revocation modal with the correct FHIR Endpoint, OAuth 2.0 Token Endpoint, and the Revoked Bearer Token and Corresponding Refresh Token
+ Click 'Run' and fill out the Token Revocation modal with the correct FHIR Endpoint, OAuth 2.0 Token Endpoint, and the Revoked Bearer Token and Corresponding Refresh Token
 screenshot
-> Click 'Execute'
+ Click 'Execute'
 
 ![Multi Patient Api Modal](images/token-revocation-modal.png)
 
-> > * Go to https://inferno.healthit.gov/reference-server/oauth/token/revoke-token in another tab and insert the copied Token value from the modal into the text input and click 'Revoke'. This will also revoke the corresponding refresh token.
+ * Go to https://inferno.healthit.gov/reference-server/oauth/token/revoke-token in another tab and insert the copied Token value from the modal into the text input and click 'Revoke'. This will also revoke the corresponding refresh token.
 
 ![Inferno Reference Server Revoke Token](images/inferno-reference-server-revoke-token.png)
 
@@ -203,54 +210,54 @@ screenshot
 
 * SMART App Launch Error: Invalid Aud Parameter
 The purpose of this test is to demonstrate that the server properly validates AUD parameter
-> Click 'Run'
-> Fill out the SMART App Launch Error: Invalid AUD Parameter modal
+ Click 'Run'
+ Fill out the SMART App Launch Error: Invalid AUD Parameter modal
 
 ![Smart App Launch Error Invalid Aud Tests Running Modal](images/smart-app-authorization-error-invalid-aud-parameter-modal.png)
 
-> Click 'Execute'
+ Click 'Execute'
 
 The Test Running modal will appear.
 
 ![Smart App Launch Error Invalid Aud Tests Running Modal](images/smart-app-launch-error-invalid-aud-tests-running-modal.png)
 
-> Click 'Perform Invalid Launch in New Window' which should open a new tab that redirects you to the fhir server's authorization process.  The purpose of this test is to confirm that the fhir server does NOT return back to Inferno, but instead displays an error message indicating that the aud value is invalid. 
+ Click 'Perform Invalid Launch in New Window' which should open a new tab that redirects you to the fhir server's authorization process.  The purpose of this test is to confirm that the fhir server does NOT return back to Inferno, but instead displays an error message indicating that the aud value is invalid. 
 
 For example, with the Inferno reference server:
 
 ![Smart App Launch Error Invalid Aud Tests Running Modal](images/inferno-reference-server-invalid-aud.png)
 
-> As soon as you have confirmed that the redirect displays an error, go back to your Inferno tab click 'Attest Launch Failed'
+ As soon as you have confirmed that the redirect displays an error, go back to your Inferno tab click 'Attest Launch Failed'
 
 * SMART App Launch Error: Invalid Launch Parameter
 The purpose of this test is to demonstrate that the server properly validates LAUNCH parameter
-> Click 'Run'
-> Fill out the SMART App Launch Error: Invalid Launch Parameter modal
+ Click 'Run'
+ Fill out the SMART App Launch Error: Invalid Launch Parameter modal
 
 ![Smart App Launch Parameters Invalid Launch Tests Running Modal](images/smart-app-launch-parameters-invalid-launch-param-modal.png)
 
-> Click 'Execute'
+ Click 'Execute'
 
->The Waiting at LAUNCH URI modal will appear. Launch from your EHR with the provided LAUNCH URI. Similar to the EHR Practitioner App Tests.
+The Waiting at LAUNCH URI modal will appear. Launch from your EHR with the provided LAUNCH URI. Similar to the EHR Practitioner App Tests.
 
-> Launch the app from your EHR from the provided app.  For the Inferno reference server:
-> * Go to https://inferno.healthit.gov/reference-server/app/app-launch
-> * Enter in the provided launch uri (https://inferno.healthit.gov/inferno/oauth2/static/launch)
-> * Click 'Launch App'. 
-> Launching from the EHR should redirect you to Inferno with the 'Tests Running' modal open
+ Launch the app from your EHR from the provided app.  For the Inferno reference server:
+ * Go to https://inferno.healthit.gov/reference-server/app/app-launch
+ * Enter in the provided launch uri (https://inferno.healthit.gov/inferno/oauth2/static/launch)
+ * Click 'Launch App'. 
+ Launching from the EHR should redirect you to Inferno with the 'Tests Running' modal open
 
 ![Smart App Launch Parameters Invalid Launch Tests Running Modal](images/smart-app-launch-error-invalid-aud-tests-running-modal.png)
 
-> Click 'Perform Invalid Launch in New Window'. This should open a new tab in your EHR where you should receive an error message stating that the Launch is invalid. For example, with the Inferno Reference Server:
+ Click 'Perform Invalid Launch in New Window'. This should open a new tab in your EHR where you should receive an error message stating that the Launch is invalid. For example, with the Inferno Reference Server:
 
 ![Inferno Reference Server Launch Is Invalid](images/inferno-reference-server-launch-is-invalid.png)
 
-> Go back to your Inferno tab, and click 'Attest Launch Failed' 
+ Go back to your Inferno tab, and click 'Attest Launch Failed' 
 
 * Visual Inspection And Attestation
 The purpose of this test is to verify conformance to portions of the test procedure that are not automated.
-> Click 'Run'
-> The 'Visual Inspection and Attestation modal will appear, with a list of Yes/No radio buttons and text boxes for Notes.  Fill out this form, and click 'Execute'
+ Click 'Run'
+ The 'Visual Inspection and Attestation modal will appear, with a list of Yes/No radio buttons and text boxes for Notes.  Fill out this form, and click 'Execute'
 
 ![Visual Inspection and Attestation Modal](images/visual-inspection-and-attestation-modal.png)
 
