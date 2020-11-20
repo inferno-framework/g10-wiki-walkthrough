@@ -96,7 +96,7 @@ After you have finished reviewing the results from the Standalone Patient App te
 
 > * Deselect all scopes except for 'patient/Condition.read', patient/Observation.read, and 'patient/Patient.read' (resources listed in the Expected Resource Grant in the previous step), and click 'Authorize'
 
-![Limited App Scope Select](images/limited-app-scope-select.png)
+![Limited App Scope Select](images/limited-app-scopes-select.png)
 
 > The authorization process should redirect you back to inferno, which will continue executing the tests.
 
