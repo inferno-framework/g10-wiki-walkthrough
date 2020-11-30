@@ -101,7 +101,7 @@ For the Inferno reference server:
 
 ![Patient Select](images/inferno-reference-server-patient-select.png)
 
-* Deselect all scopes except for 'patient/Condition.read', patient/Observation.read, and 'patient/Patient.read' (resources listed in the Expected Resource Grant in the previous step), and click 'Authorize'.
+* Deselect all scopes except for `patient/Condition.read`, `patient/Observation.read`, and `patient/Patient.read` (resources listed in the Expected Resource Grant in the previous step), and click 'Authorize'.
 
 ![Limited App Scope Select](images/limited-app-scopes-select.png)
 
