@@ -17,7 +17,7 @@ Please note that Inferno is undergoing active development.  Updates to Inferno c
 
 ## Step 1: Open Inferno
 
-* Go to http://inferno.healthit.gov
+* Go to https://inferno.healthit.gov
 * Select 'Try It Here' under 'ONC Program Edition', which is an instance of Inferno configured to specifically test the requirements of the criteria in the ONC proposed rule.
 
 ![Inferno Landing](images/inferno-landing.png)
