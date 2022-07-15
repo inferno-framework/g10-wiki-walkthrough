@@ -8,7 +8,7 @@ Please note that Inferno is undergoing active development. Updates to Inferno ca
 
 * [Step 1: Open Inferno](#step-1-open-inferno)
 * [Step 2: Preset Inferno Reference Server (optional)](#step-2-preset-inferno-reference-server-optional)
-* [Step 3: Perform Standalone Patient App Tests](#step-2-perform-standalone-patient-app-tests)
+* [Step 3: Perform Standalone Patient App Tests](#step-3-perform-standalone-patient-app-tests)
 * [Step 4: Perform Limited Access App Tests](#step-4-perform-limited-access-app-tests)
 * [Step 5: Perform EHR Practitioner App Tests](#step-5-perform-ehr-practitioner-app-tests)
 * [Step 6: Perform Single Patient API Tests](#step-6-perform-single-patient-api-tests)
